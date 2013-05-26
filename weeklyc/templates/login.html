@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block head %}
+<style type="text/css">
+    body { padding-top: 40px; padding-bottom: 40px; } 
+    button { margin-top: 10px; margin-bottom: 0; } 
+    form { margin-bottom: 0; }
+</style>
+{% endblock %} {% block body %}
+<div class="page-header">
+    <h1>
+        WCSC <small>Weekly Challenge</small>
+    </h1>
+</div>
+<div class="span6 offset3">
+    <div class="well">
+        <form>
+            <input type="text" class="input-block-level" placeholder="Email address" />
+            <input type="password" class="input-block-level" placeholder="Password" />
+            <button class="btn btn-large btn-success" type="submit">Sign In</button>
+        </form>
+    </div>
+</div>
+{% endblock %}s
