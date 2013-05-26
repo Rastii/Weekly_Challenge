@@ -52,7 +52,7 @@ class Challenge(Base):
     link            = Column(String(256))
     flag            = Column(String(32))
     submissions     = relationship("Submission", backref="challenges")
-
+    
     def __repr__(self):
         return '< Challenge(id: %s, name: %s, flag: %s) >' %\
             (self.id, self.name, self.flag)

@@ -10,13 +10,13 @@ from weeklyc.forms import *
 # the flag will not be provided
 def get_challenges():
 	data = []
-	challenges = db_session.query(Challenge.id, Challenge.name,
-									Challenge.link)
-	for id, name, link in challenges:
+	challenges = db_session.query(Challenge)
+	for challenge in challenges:
 		data.append({
-			'id': id,
-			'name': name,
-			'link': link
+			'id': challenge.id,
+			'name': challenge.name,
+			'link': challenge.link,
+			'solves': len(challenge.submissions),
 		})
 	return data
 
@@ -28,10 +28,17 @@ def get_challenge_submission_info():
 	for challenge in challenges:
 		data.append({
 			'name': challenge.name,
-			'solves': len(challenge.submissions)
+			'solves': len(challenge.submissions),
+			'users': [user.login for user in challenge.users]
 		})
 	return data
 
-def get_challenge_info():
-	data = []
-	pass
+#Returns list of users of solved a challenge with id of parameter
+def get_challenge_users(challenge_id):
+	challenge = db_session.query(Challenge)\
+				.filter_by(id=challenge_id).first()
+	print challenge
+	if(challenge):
+		return [user.login for user in challenge.users]
+	else:
+		return None

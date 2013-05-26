@@ -4,7 +4,7 @@ from weeklyc.models import *
 from weeklyc.forms import *
 from weeklyc.controllers import *
 from flask import render_template, redirect, url_for,\
-    flash, request, session, json
+    flash, request, session, json, abort
 from flask.ext.login import login_required, login_user,\
     logout_user, current_user
 from flask.ext.principal import Principal, Permission, RoleNeed
@@ -68,10 +68,15 @@ def index():
 def challenges_json():
     return json.dumps(get_challenges())
 
+@app.route('/api/challenges/<challenge_id>/users')
+def challenge_info_json(challenge_id):
+    challenge_data = get_challenge_users(challenge_id)
+    if challenge_data:
+        return json.dumps(challenge_data)
+    else:
+        abort(404)
+
 @app.route('/api/challenges/submissions', methods=['GET'])
 def challenge_submissions_json():
     return json.dumps(get_challenge_submission_info())
 
-@app.route('/api/challenges/<challenge_id>')
-def challenge_info_json(challenge_id):
-    return str(challenge_id)
