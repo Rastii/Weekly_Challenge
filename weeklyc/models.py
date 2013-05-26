@@ -19,7 +19,6 @@ class User(Base):
     login       = Column(String(64), unique=True)
     password    = deferred(Column(String(60)))
     enabled     = deferred(Column(Boolean, default=True))
-    submissions = relationship("submissions", backref="users")
 
     def __repr__(self):
         return '< User(login: %s, enabled: %s) >' %\
