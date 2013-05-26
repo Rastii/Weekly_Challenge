@@ -47,7 +47,7 @@ def logout():
 
 
 @app.route('/register', methods=['GET'])
-def render_egister():
+def render_register():
     return "Not Done"
 
 @app.route('/register', methods=['POST'])
@@ -59,6 +59,19 @@ def register():
 @app.route('/')
 @login_required
 def index():
-    if current_user:
-        print current_user
     return render_template('index.html', user=current_user)
+
+""" Api App Routes
+"""
+@app.route('/api/challenges', methods=['GET'])
+#@login_required
+def challenges_json():
+    return json.dumps(get_challenges())
+
+@app.route('/api/challenges/submissions', methods=['GET'])
+def challenge_submissions_json():
+    return json.dumps(get_challenge_submission_info())
+
+@app.route('/api/challenges/<challenge_id>')
+def challenge_info_json(challenge_id):
+    return str(challenge_id)

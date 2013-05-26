@@ -31,3 +31,21 @@ def setup_db():
             password = bcrypt.generate_password_hash('asdfqwer'))
     db_session.add(luke)
     db_session.commit()
+
+    """ Challenge Creation
+    """
+    pwnme = Challenge(name="Pwnme",
+                        link="/static/files/pwnme",
+                        flag="butthurt")
+    banana = Challenge(name="Banana",
+                        link="/static/files/banana",
+                        flag="rotten")
+    db_session.add(pwnme)
+    db_session.add(banana)
+    db_session.commit()
+
+    """ Challenge Submissions
+    """
+    dennis.submissions.append(pwnme)
+    luke.submissions.append(banana)
+    db_session.commit()
