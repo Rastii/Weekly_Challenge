@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	{% if title %} 
+		<title>{{ title }}</title>
+	{% else %}
+		<title>Task Me</title>
+	{% endif %}
+	<link rel="stylesheet" href="../static/css/base.css">
+	<script src="../static/js/jquery-1.10.0.min.js"></script>
+	{% block head %}{% endblock %}
+</head>
+<body>
+	<header id="main-header">
+		<span>WCSC Weekly Challenges</span>
+	</header>
+	<div id="main-container">
+		{% block body %}
+		{% endblock %}
+	</div>
+</body>
