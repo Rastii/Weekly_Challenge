@@ -12,31 +12,36 @@
   });
 </script>
 {% endblock %} 
-{% set activePage="Challenges" %}
+{% set activePage="Scoreboard" %}
 {% block body %}
 <div class="page-header">
     <h1>
-        Challenges
+        Scoreboard
     </h1>
 </div>
 
 <div id="challenges">
 
-{% for num in range(0,10) %}
-  <div class="span3">
-    <div class="well text-center">
-      <h3>Challenge #1</h3>
-      <hr>
-      <p>Solves: 0</p>
-      <a href="#">Download Challenge</a>
-      <div class="input-append">
-        <input class="input-small" id="appendedInputButton" type="text" placeholder="Flag">
-        <button class="btn" type="button">Submit</button>
-      </div>
-    </div>
-  </div>
-{% endfor %}
+  <div class="well">
 
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for num in range(0,10) %}
+        <tr>
+          <td>Dennis</td>
+          <td>150</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
 
 </div>
 
