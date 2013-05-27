@@ -1,48 +1,45 @@
 {% extends "base.html" %} 
 {% block head %}
 <style type="text/css">
-  .input-append{
-    padding-top:10px;
-  }
+    body { padding-top: 40px; padding-bottom: 40px; } 
+    #submit { margin-top: 10px; margin-bottom: 0; } 
+    form { margin-bottom: 0; }
 </style>
 <script type="text/javascript">
-  $(function(){
-    // Fit 4 items in a row (CSS wont work in IE)
-    $("#challenges div:nth-child(4n+1)").css('margin-left','0');
-  });
+// Fade errors in
+$(window).load(function () {
+    $('.fade').addClass('in');
+});
 </script>
-{% endblock %} 
-{% set activePage="Scoreboard" %}
+{% endblock %}
+
+{% macro render_field(field, desc) %}
+{{ field(class='input-block-level',placeholder=desc) }}
+
+  {% if field.errors %}    
+    {% for error in field.errors %}
+    <div class="alert fade alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ error }}
+    </div>
+    {% endfor %}
+  {% endif %}
+
+{% endmacro %}
+
 {% block body %}
 <div class="page-header">
     <h1>
-        Scoreboard
+        WCSC <small>Weekly Challenge</small>
     </h1>
 </div>
-
-<div id="challenges">
-
-  <div class="well">
-
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for num in range(0,10) %}
-        <tr>
-          <td>Dennis</td>
-          <td>150</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-
-  </div>
-
+<div class="span6 offset3">
+    <div class="well">
+        <form action="/login" method="post">
+            {{ render_field(form.login, 'Email address') }}
+            {{ render_field(form.password, 'Password') }}
+            <button class="btn btn-large btn-success" type="submit" id="submit">Sign In</button>
+        </form>
+    </div>
 </div>
-
-{% endblock %}s
+{% endblock %}
