@@ -47,5 +47,6 @@ def setup_db():
     """ Challenge Submissions
     """
     dennis.submissions.append(pwnme)
+    dennis.submissions.append(banana)
     luke.submissions.append(banana)
     db_session.commit()

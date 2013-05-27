@@ -5,12 +5,7 @@
     padding-top:10px;
   }
 </style>
-<script type="text/javascript">
-  $(function(){
-    // Fit 4 items in a row (CSS wont work in IE)
-    $("#challenges div:nth-child(4n+1)").css('margin-left','0');
-  });
-</script>
+<script src="../static/js/scoreboard.js"></script>
 {% endblock %} 
 {% set activePage="Scoreboard" %}
 {% block body %}
@@ -20,28 +15,21 @@
     </h1>
 </div>
 
-<div id="challenges">
 
-  <div class="well">
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for num in range(0,10) %}
-        <tr>
-          <td>Dennis</td>
-          <td>150</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<div class="well">
 
-  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody id="scoreboard">
+
+    </tbody>
+  </table>
 
 </div>
 
