@@ -3,7 +3,7 @@
   $(document).ready(function() {
     window.userSolves = {};
     window.challengeCount = 0;
-    window.loopCounter1 = 0;
+    window.completeCounter = 0;
     return $.ajax('/api/challenges', {
       type: 'GET',
       dataType: 'json',
@@ -40,8 +40,8 @@
             complete: function() {
               var n, name, names, sortedNames, _j, _len1, _results1;
 
-              if (window.loopCounter1 < window.challengeCount - 1) {
-                return window.loopCounter1++;
+              if (window.completeCounter < window.challengeCount - 1) {
+                return window.completeCounter++;
               } else {
                 names = (function() {
                   var _results1;

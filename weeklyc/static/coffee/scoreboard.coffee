@@ -1,4 +1,4 @@
-$->
+$(document).ready ->
 
 	window.userSolves = {}
 	window.challengeCount = 0
