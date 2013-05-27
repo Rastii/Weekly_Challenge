@@ -75,11 +75,12 @@ def scoreboard():
 """ Api App Routes
 """
 @app.route('/api/challenges', methods=['GET'])
-#@login_required
+@login_required
 def challenges_json():
     return json.dumps(get_challenges())
 
 @app.route('/api/challenges/<challenge_id>/users')
+@login_required
 def challenge_info_json(challenge_id):
     challenge_data = get_challenge_users(challenge_id)
     if challenge_data:
@@ -88,6 +89,7 @@ def challenge_info_json(challenge_id):
         abort(404)
 
 @app.route('/api/challenges/submissions', methods=['GET'])
+@login_required
 def challenge_submissions_json():
     return json.dumps(get_challenge_submission_info())
 

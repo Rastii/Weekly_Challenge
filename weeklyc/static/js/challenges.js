@@ -8,37 +8,33 @@
         return console.error(jqXHR, textStatus, errorThrown);
       },
       success: function(data, textStatus, jqXHR) {
-        var btn, chal, challengeBlock, _i, _len, _ref, _results,
-          _this = this;
+        var btn, chal, challengeBlock, _i, _len, _results;
 
         console.log(data, textStatus, jqXHR);
-        _ref = data.reverse();
         _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          chal = _ref[_i];
+        for (_i = 0, _len = data.length; _i < _len; _i++) {
+          chal = data[_i];
           btn = $('<button class="btn" type="button">Submit</button>').click(function() {
-            return alert('this would submit the key');
+            return console.log('this would submit the key', this);
           });
-          _results.push(challengeBlock = $('\
+          challengeBlock = $('\
 					<div class="span3">\
 						<div class="well text-center">\
-					      <h3>Challenge #' + chal.id + '</h3>\
-					      <h2>' + chal.name + '</h2>\
+					      <h3>Challenge #' + chal.id + '<br><small>' + chal.name + '</small></h3>\
 					      <hr>\
 					      <p>Solves: ' + chal.solves + '</p>\
 					      <a href="' + chal.link + '">Download Challenge</a>\
 					      <div class="input-append">\
-					        <input class="input-small" id="appendedInputButton" type="text" placeholder="Flag">\
-					        \
+					        <input class="input-small" id="appendedInputButton" type="text" placeholder="Flag">					        \
 					      </div>\
 					    </div>\
-					</div>'));
+					</div>');
+          challengeBlock.find('.input-append').append(btn);
+          _results.push(challengeBlock.appendTo('#challenges'));
         }
         return _results;
       }
     });
   });
-
-  "<div class=\"span3\">\n    <div class=\"well text-center\">\n      <h3>Challenge #1</h3>\n      <hr>\n      <p>Solves: 0</p>\n      <a href=\"#\">Download Challenge</a>\n      <div class=\"input-append\">\n        <input class=\"input-small\" id=\"appendedInputButton\" type=\"text\" placeholder=\"Flag\">\n        \n      </div>\n    </div>\n  </div>";
 
 }).call(this);
