@@ -59,7 +59,18 @@ def register():
 @app.route('/')
 @login_required
 def index():
-    return render_template('index.html', user=current_user)
+    return redirect(url_for("challenges"))
+
+@app.route('/challenges')
+@login_required
+def challenges():
+    return render_template('challenges.html', user=current_user)
+
+@app.route('/scoreboard')
+@login_required
+def scoreboard():
+    return render_template('scoreboard.html', user=current_user)
+
 
 """ Api App Routes
 """

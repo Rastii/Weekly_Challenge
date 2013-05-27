@@ -20,9 +20,8 @@
 	    	<div class="container">
 			    <a class="brand" href="#">WCSC Weekly Challenge</a>
 			    <ul class="nav">
-			    % set links = [('index.html', 'Home'),
-					           ('challenges.html', 'Challenges'),
-					           ('scoreboard.html', 'Scoreboard')]
+			    % set links = [('challenges', 'Challenges'),
+					           ('scoreboard', 'Scoreboard')]
 
 				{% for link, name in links %}
 				    <li {% if name == activePage %}class="active"{% endif %} ><a href="{{ link }}">{{ name }}</a></li>
