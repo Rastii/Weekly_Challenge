@@ -1,1 +1,1 @@
-coffee -o weeklyc/static/js -cw weeklyc/static/coffee
+coffee -o weeklyc/static/js -cw coffee
