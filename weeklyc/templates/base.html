@@ -11,6 +11,11 @@
 	<link rel="stylesheet" href="../static/css/base.css">
 	<script src="../static/js/jquery-1.10.0.min.js"></script>
 	<script src="../static/js/bootstrap.min.js"></script>
+	{% if user is defined %}
+	<script type="text/javascript">
+	window.user = '{{ user.login }}';
+	</script>
+	{% endif %}
 	{% block head %}{% endblock %}
 </head>
 <body>
@@ -21,7 +26,8 @@
 			    <a class="brand" href="#">WCSC Weekly Challenge</a>
 			    <ul class="nav">
 			    % set links = [('challenges', 'Challenges'),
-					           ('scoreboard', 'Scoreboard')]
+					           ('scoreboard', 'Scoreboard'),
+					           ('logout', 'Logout')]
 
 				{% for link, name in links %}
 				    <li {% if name == activePage %}class="active"{% endif %} ><a href="{{ link }}">{{ name }}</a></li>
