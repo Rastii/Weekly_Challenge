@@ -18,20 +18,10 @@ def get_challenges():
 			'link': challenge.link,
 			'solves': len(challenge.submissions),
 		})
-	return data
-
-#This will get challenge submissions info, returns id, name, and
-# amount of submissions associated with each challenge
-def get_challenge_submission_info():
-	data = []
-	challenges = db_session.query(Challenge)
-	for challenge in challenges:
-		data.append({
-			'name': challenge.name,
-			'solves': len(challenge.submissions),
-			'users': [user.login for user in challenge.users]
-		})
-	return data
+	if len(data) > 0:
+		return data
+	else:
+		return None
 
 #Returns list of users of solved a challenge with id of parameter
 def get_challenge_users(challenge_id):
@@ -42,3 +32,16 @@ def get_challenge_users(challenge_id):
 		return [user.login for user in challenge.users]
 	else:
 		return None
+
+def get_users():
+	data = []
+	users = db_session.query(User)
+	if users:
+		for user in users:
+			data.append({
+				'name': user.login,
+				'submissions': [x.name for x in user.submissions]
+			})
+		return data
+	else:
+		return data

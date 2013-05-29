@@ -68,7 +68,7 @@ def index():
 def challenges_json():
     return json.dumps(get_challenges())
 
-@app.route('/api/challenges/<challenge_id>/users')
+@app.route('/api/challenges/<challenge_id>/users', methods=['GET'])
 def challenge_info_json(challenge_id):
     challenge_data = get_challenge_users(challenge_id)
     if challenge_data:
@@ -76,7 +76,10 @@ def challenge_info_json(challenge_id):
     else:
         abort(404)
 
-@app.route('/api/challenges/submissions', methods=['GET'])
-def challenge_submissions_json():
-    return json.dumps(get_challenge_submission_info())
-
+@app.route('/api/users', methods=['GET'])
+def users_json():
+    users = get_users();
+    if users:
+        return json.dumps(users)
+    else:
+        return json.dumps("")
