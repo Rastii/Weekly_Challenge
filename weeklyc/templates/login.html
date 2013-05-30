@@ -39,7 +39,10 @@ $(window).load(function () {
             {{ form.csrf_token }}
             {{ render_field(form.login, 'Username') }}
             {{ render_field(form.password, 'Password') }}
-            <button class="btn btn-large btn-success" type="submit" id="submit">Sign In</button>
+            <div>
+                <button class="btn btn-large btn-success" type="submit" id="submit">Sign In</button>
+            </div>
+            <a style="float: right; position:relative; top:-1em;" href="/register">Register</a>
         </form>
     </div>
 </div>
