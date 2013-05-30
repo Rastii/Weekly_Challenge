@@ -5,7 +5,7 @@
     padding-top:10px;
   }
 </style>
-<script src="../static/js/scoreboard.js"></script>
+<!--<script src="../static/js/scoreboard.js"></script>-->
 {% endblock %} 
 {% set activePage="Scoreboard" %}
 {% block body %}
@@ -27,7 +27,12 @@
       </tr>
     </thead>
     <tbody id="scoreboard">
-
+      {% for user in users %}
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.submissions }}</td>
+        </tr>
+      {% endfor %}
     </tbody>
   </table>
 

@@ -87,7 +87,8 @@ def challenges():
 @app.route('/scoreboard')
 @login_required
 def scoreboard():
-    return render_template('scoreboard.html', user=current_user)
+    return render_template('scoreboard.html',
+        user=current_user, users=get_users())
 
 
 """ Api App Routes

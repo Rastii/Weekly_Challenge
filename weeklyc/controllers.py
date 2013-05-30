@@ -40,7 +40,9 @@ def get_users():
 		for user in users:
 			data.append({
 				'name': user.login,
-				'submissions': [x.name for x in user.submissions]
+				#For future use
+				#'submissions': [x.name for x in user.submissions]
+				'submissions': len(user.submissions)
 			})
 		return data
 	else:
