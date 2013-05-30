@@ -131,6 +131,7 @@ def submit_challenge(challenge_id):
         else:
             if request.form['key'] == challenge.flag:
                 user.submissions.append(challenge)
+                db_session.commit()
                 return "1"
             else:
                 return "0"
