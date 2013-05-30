@@ -19,7 +19,7 @@
             var _this = this;
 
             $(this).removeClass('btn-danger').removeClass('btn-success');
-            return $.ajax('/test/challenges/' + $(this).data('item'), {
+            return $.ajax('/submit/challenges/' + $(this).data('item'), {
               type: 'POST',
               data: {
                 key: $(this).siblings('input').val()

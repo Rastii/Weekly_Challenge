@@ -12,7 +12,7 @@ $(document).ready ->
 						$(@).removeClass('btn-danger').removeClass('btn-success')
 
 						# Submit a key
-						$.ajax '/test/challenges/' + $(@).data('item'),
+						$.ajax '/submit/challenges/' + $(@).data('item'),
 							type: 'POST'
 							data: {key: $(@).siblings('input').val()}
 							success: (data) =>
@@ -22,7 +22,7 @@ $(document).ready ->
 								else
 									#Invalid key
 									$(this).addClass('btn-danger')
-
+				# Save the item number
 				btn.data('item', chal.id)
 
 				input = $('<input class="input-small" id="appendedInputButton" type="text" placeholder="Flag">')					
