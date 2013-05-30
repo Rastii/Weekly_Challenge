@@ -6,15 +6,15 @@ $(document).ready ->
 			console.error(jqXHR, textStatus, errorThrown)
 		success: (data, textStatus, jqXHR) ->
 			for chal in data
-				btn = $('<button class="btn" type="button">Submit</button>')
+				btn = $('<button class="btn" type="button">Submit</button>')				
 					.click () ->
 						# Remove color (may be too fast but oh well)
-						$(this).removeClass('btn-danger').removeClass('btn-success')
+						$(@).removeClass('btn-danger').removeClass('btn-success')
 
 						# Submit a key
-						$.ajax '/test/challenges/' + chal.id,
+						$.ajax '/test/challenges/' + $(@).data('item'),
 							type: 'POST'
-							data: {foo: 'bar'}
+							data: {key: $(@).siblings('input').val()}
 							success: (data) =>
 								if(data == '1')
 									#Success
@@ -23,6 +23,7 @@ $(document).ready ->
 									#Invalid key
 									$(this).addClass('btn-danger')
 
+				btn.data('item', chal.id)
 
 				input = $('<input class="input-small" id="appendedInputButton" type="text" placeholder="Flag">')					
 					.keydown (objectEvent) ->
@@ -31,17 +32,17 @@ $(document).ready ->
 							$(this).parent().find('button').click();
 
 
-				challengeBlock = $('
-					<div class="span3">
-						<div class="well text-center" id="well-' + chal.id + '">
-					      <h3>Challenge #' + chal.id + '<br><small>' + chal.name + '</small></h3>
+				challengeBlock = $("
+					<div class=\"span3\">
+						<div class=\"well text-center\" id=\"well-#{chal.id}\">
+					      <h3>Challenge ##{chal.id}<br><small>#{chal.name}</small></h3>
 					      <hr>
-					      <p>Solves: ' + chal.solves + '</p>
-					      <a href="' + chal.link + '">Download Challenge</a>
-					      <div class="input-append">					        				        
+					      <p>Solves: #{chal.solves}</p>
+					      <a href=\"#{chal.link}\">Download Challenge</a>
+					      <div class=\"input-append\">					        				        
 					      </div>
 					    </div>
-					</div>')
+					</div>")
 				challengeBlock.find('.input-append').append(input)
 				challengeBlock.find('.input-append').append(btn)
 				challengeBlock.appendTo('#challenges')

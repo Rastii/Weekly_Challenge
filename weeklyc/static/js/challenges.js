@@ -19,10 +19,10 @@
             var _this = this;
 
             $(this).removeClass('btn-danger').removeClass('btn-success');
-            return $.ajax('/test/challenges/' + chal.id, {
+            return $.ajax('/test/challenges/' + $(this).data('item'), {
               type: 'POST',
               data: {
-                foo: 'bar'
+                key: $(this).siblings('input').val()
               },
               success: function(data) {
                 if (data === '1') {
@@ -33,22 +33,13 @@
               }
             });
           });
+          btn.data('item', chal.id);
           input = $('<input class="input-small" id="appendedInputButton" type="text" placeholder="Flag">').keydown(function(objectEvent) {
             if (objectEvent.keyCode === 13) {
               return $(this).parent().find('button').click();
             }
           });
-          challengeBlock = $('\
-					<div class="span3">\
-						<div class="well text-center" id="well-' + chal.id + '">\
-					      <h3>Challenge #' + chal.id + '<br><small>' + chal.name + '</small></h3>\
-					      <hr>\
-					      <p>Solves: ' + chal.solves + '</p>\
-					      <a href="' + chal.link + '">Download Challenge</a>\
-					      <div class="input-append">					        				        \
-					      </div>\
-					    </div>\
-					</div>');
+          challengeBlock = $("					<div class=\"span3\">						<div class=\"well text-center\" id=\"well-" + chal.id + "\">					      <h3>Challenge #" + chal.id + "<br><small>" + chal.name + "</small></h3>					      <hr>					      <p>Solves: " + chal.solves + "</p>					      <a href=\"" + chal.link + "\">Download Challenge</a>					      <div class=\"input-append\">					        				        					      </div>					    </div>					</div>");
           challengeBlock.find('.input-append').append(input);
           challengeBlock.find('.input-append').append(btn);
           challengeBlock.appendTo('#challenges');
