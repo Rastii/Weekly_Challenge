@@ -92,7 +92,3 @@ def challenge_info_json(challenge_id):
 @login_required
 def challenge_submissions_json():
     return json.dumps(get_challenge_submission_info())
-
-@app.route('/test/challenges/<challenge_id>', methods=['GET', 'POST'])
-def testSubmit(challenge_id):
-    return "1"
