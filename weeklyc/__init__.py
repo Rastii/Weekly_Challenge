@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] =\
     "\x8f \x0c5\xd1\xf7\xd1\xcc,\xd7\xd9\xe5\x9d\xd8\x98\x10\xb4\xfe"
 
 login_manager = LoginManager()
-#login_manager.login_view = 'login'
+login_manager.login_view = 'login'
 login_manager.setup_app(app)
 
 import weeklyc.views

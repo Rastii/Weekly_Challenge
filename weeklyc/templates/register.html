@@ -1,0 +1,47 @@
+{% extends "base.html" %} 
+{% block head %}
+<style type="text/css">
+    body { padding-top: 40px; padding-bottom: 40px; } 
+    #submit { margin-top: 10px; margin-bottom: 0; } 
+    form { margin-bottom: 0; }
+</style>
+<script type="text/javascript">
+// Fade errors in
+$(window).load(function () {
+    $('.fade').addClass('in');
+});
+</script>
+{% endblock %}
+
+{% macro render_field(field, desc) %}
+{{ field(class='input-block-level',placeholder=desc) }}
+
+  {% if field.errors %}    
+    {% for error in field.errors %}
+    <div class="alert fade alert-error">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ error }}
+    </div>
+    {% endfor %}
+  {% endif %}
+
+{% endmacro %}
+
+{% block body %}
+<div class="page-header">
+    <h1>
+        WCSC <small>Weekly Challenge</small>
+    </h1>
+</div>
+<div class="span6 offset3">
+    <div class="well">
+        <form action="" method="post">
+            {{ form.csrf_token }}
+            {{ render_field(form.login, 'Username') }}
+            {{ render_field(form.password, 'Password') }}
+            {{ render_field(form.confirm, 'Confirm Password')}}
+            <button class="btn btn-large btn-success" type="submit" id="submit">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

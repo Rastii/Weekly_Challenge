@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+{% block head %}
+<style type="text/css">
+  .input-append{
+    padding-top:10px;
+  }
+  .solved {
+    background-color: #0B2403;
+  }
+</style>
+<script type="text/javascript">
+  $(function(){
+    // Fit 4 items in a row (CSS wont work in IE)
+    $("#challenges div:nth-child(4n+1)").css('margin-left','0');
+  });
+</script>
+<script src="../static/js/challenges.js"></script>
+{% endblock %} 
+{% set activePage="Challenges" %}
+{% block body %}
+<div class="page-header">
+    <h1>
+        Challenges
+    </h1>
+</div>
+
+<div id="challenges">
+
+</div>
+
+{% endblock %}

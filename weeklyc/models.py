@@ -54,6 +54,6 @@ class Challenge(Base):
 class Submission(Base):
     __tablename__ = 'submissions'
     id              = Column(Integer, primary_key=True)
-    name            = Column(Integer, ForeignKey('challenges.id'))
-    user_id         = Column(Integer, ForeignKey('users.id'), unique=True)
+    challenge_id    = Column(Integer, ForeignKey('challenges.id'))
+    user_id         = Column(Integer, ForeignKey('users.id'))
     submission_time = Column(DateTime, default=now()) 

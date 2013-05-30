@@ -25,7 +25,7 @@ def setup_db():
     """ User Creation
     """
     dennis = User(login='skinner927',
-            password = bcrypt.generate_password_hash('asdfqwer'))
+            password = bcrypt.generate_password_hash('bigboobs'))
     db_session.add(dennis)
     luke = User(login='rastii',
             password = bcrypt.generate_password_hash('asdfqwer'))
@@ -47,5 +47,6 @@ def setup_db():
     """ Challenge Submissions
     """
     dennis.submissions.append(pwnme)
+    dennis.submissions.append(banana)
     luke.submissions.append(banana)
     db_session.commit()

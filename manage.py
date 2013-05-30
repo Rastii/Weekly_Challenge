@@ -1,6 +1,9 @@
 import sys
 from weeklyc import app
 
+app.jinja_env.line_statement_prefix = '%'
+app.jinja_env.add_extension('jinja2.ext.loopcontrols')
+
 if len(sys.argv) > 1:
     if sys.argv[1] == 'run':
         #use this if you wanto view your page outside of localhost

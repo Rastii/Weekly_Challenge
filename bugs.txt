@@ -1,0 +1,1 @@
+If the user's password is < 6 chars in the DB no error is returned but cannot login (super duper edge case)
